@@ -1,4 +1,3 @@
-# v is it correct to add .vagrant/?
 .vagrant/
 /node_modules
 /public/hot
