@@ -16,4 +16,9 @@ class Owner extends Model
         return ("{$this->first_name} {$this->last_name}");
     }
 
+    public function fullAddress()
+    {
+    return ("{$this->address_1}, {$this->address_2}, {$this->town}, {$this->postcode}");
+    }
+
 }
