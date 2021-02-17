@@ -21,4 +21,17 @@ class Owner extends Model
     return ("{$this->address_1}, {$this->address_2}, {$this->town}, {$this->postcode}");
     }
 
+    public static function haveWeBananas($number)
+    {
+        if ($number === 0) {
+            return "No, we have no bananas";
+        }
+
+        if ($number === 1) {
+            return "Yes, we have 1 banana";
+        }
+    
+        return "Yes, we have {$number} bananas";
+    }
+
 }
