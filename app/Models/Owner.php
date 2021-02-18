@@ -16,10 +16,12 @@ class Owner extends Model
         return ("{$this->first_name} {$this->last_name}");
     }
 
+    // could do this as an array to help solve the empty field property
     public function fullAddress()
     {
-    return ("{$this->address_1}, {$this->address_2}, {$this->town}, {$this->postcode}");
+        return "{$this->address_1}, {$this->address_2}, {$this->town}, {$this->postcode}";
     }
+
 
     public static function haveWeBananas($number)
     {
