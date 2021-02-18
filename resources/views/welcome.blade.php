@@ -2,6 +2,8 @@
     
     @extends("app")
 
+    @section("title"){{"Blah blah blah"}}@endsection
+    
     @section("content")
         <div class="list-group">
 
