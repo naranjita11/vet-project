@@ -13,15 +13,15 @@ class HomeController extends Controller
         $timeNow = Carbon::now();
         $timeNow = $timeNow->hour;
         
-        if ($timeNow < 12) {
+        if ($timeNow > 0 && $timeNow < 12) {
             return "Morning";
         }
 
-        if ($timeNow < 17) {
+        else if ($timeNow >= 12 && $timeNow < 17) {
             return "Afternoon";
         }
 
-        return "Evening";
+        else return "Evening";
     }
 
     public function index()
@@ -30,6 +30,13 @@ class HomeController extends Controller
         
         return view("welcome", [
             "greeting" => $greeting
+        ]);
+    }
+
+    public function show(Owner $owner)
+    {
+        return view("owners/show", [
+            "owner" => $owner
         ]);
     }
 }
