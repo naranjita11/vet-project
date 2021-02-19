@@ -1,1 +1,1 @@
-<footer class="mt-4 bg-light">Footery Stuff</footer>
+<footer class="mt-4 bg-light">This is a footer</footer>
