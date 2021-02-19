@@ -31,6 +31,16 @@ class Owner extends Model
     }
 
 
+    public function formattedPhoneNumber()
+    {
+        $str1 = substr($this->telephone, 0, 5);
+        $str2 = substr($this->telephone, 5, 3);
+        $str3 = substr($this->telephone, 8, 3);
+
+        return "{$str1} {$str2} {$str3}";
+    }
+
+
     public static function haveWeBananas($number)
     {
         if ($number === 0) {

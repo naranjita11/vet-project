@@ -5,7 +5,7 @@
           <h5 class="mb-1">{{ $owner->fullName() }}</h5>
 
           {{-- output the owner ID --}}
-          <small>{{ $owner->telephone }}</small>
+          <small>{{ $owner->formattedPhoneNumber() }}</small>
         </div>
 
         {{-- use the fullAddress() method --}}
