@@ -16,10 +16,18 @@ class Owner extends Model
         return ("{$this->first_name} {$this->last_name}");
     }
 
-    // could do this as an array to help solve the empty field property
     public function fullAddress()
     {
-        return "{$this->address_1}, {$this->address_2}, {$this->town}, {$this->postcode}";
+        // array_filter function filters out empty fields
+        $addressParts = array_filter([
+            $this->address_1,
+            $this->address_2,
+            $this->town,
+            $this->postcode
+        ]);
+
+        // string method implode() joins array elements with a string where you pass in the separator first ", " then the array to be joined.
+        return implode(", ", $addressParts); 
     }
 
 
