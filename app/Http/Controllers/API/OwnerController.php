@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Owner;
 use Auth;
 use App\Http\Requests\API\OwnerRequest;
+use App\Http\Requests\API\OwnerUpdateRequest;
 use App\Http\Resources\API\OwnerResource;
 use App\Http\Resources\API\OwnerListResource;
 
@@ -59,7 +60,7 @@ class OwnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(OwnerRequest $request, Owner $owner)
+    public function update(OwnerUpdateRequest $request, Owner $owner)
     {
         $data = $request->all();
         $owner->update($data);
