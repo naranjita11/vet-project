@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Owner;
 use App\Http\Requests\OwnerRequest;
+use Auth;
 
 class OwnerController extends Controller
 {

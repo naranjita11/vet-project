@@ -26,3 +26,7 @@ Route::group(["prefix" => "owners"], function () {
     Route::post('/create', [OwnerController::class, "createPost"]);
     Route::get('/{owner}', [OwnerController::class, "show"]);
 });
+
+Auth::routes(['register' => false]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
