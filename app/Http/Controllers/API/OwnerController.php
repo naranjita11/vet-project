@@ -5,6 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Owner;
+use Auth;
+use App\Http\Requests\API\OwnerRequest;
+use App\Http\Resources\API\OwnerResource;
+use App\Http\Resources\API\OwnerListResource;
 
 class OwnerController extends Controller
 {
@@ -15,7 +19,9 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        return Owner::all();
+        // needs to return multiple owners
+        // so we use the collection method
+        return OwnerListResource::collection(Owner::all());
     }
 
     /**
@@ -24,15 +30,15 @@ class OwnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OwnerRequest $request)
     {
-        // get all the request data
-        // returns an array of all the data the user sent
         $data = $request->all();
-        // create article with data and store in DB
-        // and return it as JSON
-        // automatically gets 201 status as it's a POST request
-        return Owner::create($data);
+
+        // store owner in variable
+        $owner = Owner::create($data);
+
+        // return the resource
+        return new OwnerResource($owner);
     }
 
     /**
@@ -43,7 +49,7 @@ class OwnerController extends Controller
      */
     public function show(Owner $owner)
     {
-        return $owner;
+        return new OwnerResource($owner);
     }
 
     /**
@@ -53,17 +59,13 @@ class OwnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Owner $owner)
+    public function update(OwnerRequest $request, Owner $owner)
     {
-        // get the request data
         $data = $request->all();
-
-        // update the article using the fill method
-        // then save it to the database
-        $owner->fill($data)->save();
-
-        // return the updated version
-        return $owner;
+        $owner->update($data);
+      
+        // return the resource
+        return new OwnerResource($owner);
     }
 
     /**
