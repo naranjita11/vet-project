@@ -15,18 +15,24 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-// the '/' part is the URL path
-// the "index" or "show" bits at the end are methods on the controller which define the view that gets outputted to the user
-Route::get('/', [HomeController::class, "index"]);
-
-// this group just adds the prefix of owners to the URL
-Route::group(["prefix" => "owners"], function () {
-    Route::get('/', [OwnerController::class, "index"]);
-    Route::get('/create', [OwnerController::class, "create"]);
-    Route::post('/create', [OwnerController::class, "createPost"]);
-    Route::get('/{owner}', [OwnerController::class, "show"]);
-});
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+// this group just adds the prefix of owners to the URL
+Route::group(["prefix" => "owners"], function () {
+    
+    //put behid the auth middleware
+    // need to be logged in to use
+    Route::group(["middleware" => "auth"], function () {
+        Route::get('/create', [OwnerController::class, "create"]);
+        Route::post('/create', [OwnerController::class, "createPost"]);
+    });
+
+    // don't need to be logged in to view
+    Route::get('/', [OwnerController::class, "index"]);
+    Route::get('/{owner}', [OwnerController::class, "show"]);
+});
+
