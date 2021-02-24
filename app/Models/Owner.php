@@ -54,4 +54,10 @@ class Owner extends Model
         return "Yes, we have {$number} bananas";
     }
 
+    public function animals()
+    {
+        // use hasMany relationship method
+        return $this->hasMany(Animal::class);
+    }
+
 }
