@@ -60,4 +60,5 @@ class Owner extends Model
         return $this->hasMany(Animal::class);
     }
 
+
 }

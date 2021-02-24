@@ -20,7 +20,8 @@ class OwnerController extends Controller
     public function show(Owner $owner)
     {
         return view("owners/show", [
-            "owner" => $owner
+            "owner" => $owner,
+            "animals" => $owner->animals
         ]);
     }
 
