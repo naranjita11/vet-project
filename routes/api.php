@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\OwnerController;
+use App\Http\Controllers\API\Owners\AnimalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,17 @@ Route::group(["prefix" => "owners"], function () {
         Route::get("", [OwnerController::class, "show"]);
         Route::put("", [OwnerController::class, "update"]);
         Route::delete("", [OwnerController::class, "destroy"]);
+
+        Route::group(["prefix" => "animals"], function () {
+            Route::get("", [AnimalController::class, "index"]);
+            Route::post("", [AnimalController::class, "store"]);
+
+            Route::group(["prefix" => "{animal}"], function () {
+                Route::get("", [AnimalController::class, "show"]);
+                Route::put("", [AnimalController::class, "update"]);
+                Route::delete("", [AnimalController::class, "destroy"]);
+            });
+        });
     });
 });
-
-
 
