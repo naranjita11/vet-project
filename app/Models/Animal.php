@@ -23,7 +23,6 @@ class Animal extends Model
         {
             return "Dangerous!!";
         }
-
         return "No prob";
     }
 
@@ -35,6 +34,26 @@ class Animal extends Model
     public function formattedHeight()
     {
         return "{$this->height}m";
+    }
+
+    public function treatments()
+    {
+        return $this->belongsToMany(Treatment::class);
+    }
+
+    // just accept an array of strings
+    // we don't want to pass request in as there's no
+    // reason models should know about about the request
+    public function setTreatments(array $strings) : Animal
+    {
+        $treatments = Treatment::fromStrings($strings);
+
+        // we're on an animal instance, so use $this
+        // pass in collection of IDs
+        $this->treatments()->sync($treatments->pluck("id"));
+
+        // return $this in case we want to chain
+        return $this;
     }
 
     
