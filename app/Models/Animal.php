@@ -19,7 +19,23 @@ class Animal extends Model
 
     public function dangerous()
     {
-        return $this->biteyness >= 3;
+        if ($this->biteyness >= 3)
+        {
+            return "Dangerous!!";
+        }
+
+        return "No prob";
     }
 
+    public function formattedWeight()
+    {
+        return "{$this->weight}kg";
+    }
+
+    public function formattedHeight()
+    {
+        return "{$this->height}m";
+    }
+
+    
 }
