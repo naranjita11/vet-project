@@ -11,6 +11,7 @@ use App\Http\Requests\API\OwnerUpdateRequest;
 use App\Http\Resources\API\OwnerResource;
 use App\Http\Resources\API\OwnerListResource;
 
+
 class OwnerController extends Controller
 {
     /**
