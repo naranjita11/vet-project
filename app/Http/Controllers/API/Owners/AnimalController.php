@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API\Owners;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\API\AnimalRequest;
+use App\Http\Requests\API\AnimalUpdateRequest;
 use App\Models\Owner;
 use App\Models\Animal;
 use App\Http\Resources\API\AnimalResource;
@@ -33,7 +35,7 @@ class AnimalController extends Controller
 
 
             // get the $owner using Route Model Binding
-    public function store(Request $request, Owner $owner)
+    public function store(AnimalRequest $request, Owner $owner)
     {
     $data = $request->all();
 
@@ -70,7 +72,7 @@ class AnimalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Owner $owner, Animal $animal)
+    public function update(AnimalUpdateRequest $request, Owner $owner, Animal $animal)
     {
         $data = $request->all();
       
