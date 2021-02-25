@@ -21,9 +21,8 @@ class Animal extends Model
     {
         if ($this->biteyness >= 3)
         {
-            return "Dangerous!!";
+            return "(Dangerous!!)";
         }
-        return "No prob";
     }
 
     public function formattedWeight()

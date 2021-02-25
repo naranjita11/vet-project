@@ -3,7 +3,7 @@
 
           <h4 class="mb-1">{{ $animal->name }}, {{ $animal->type }}</h4>
 
-          <small>Biteyness: {{ $animal->biteyness }}</small>
+          <small>Biteyness: {{ $animal->biteyness }} {{ $animal->dangerous() }}</small>
         </div>
         <p class="mb-1">DOB: {{ $animal->date_of_birth }}</p>  
         <p class="mb-1">Weight: {{ $animal->formattedWeight() }}</p>
