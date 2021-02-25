@@ -8,5 +8,6 @@
         <p class="mb-1">DOB: {{ $animal->date_of_birth }}</p>  
         <p class="mb-1">Weight: {{ $animal->formattedWeight() }}</p>
         <p class="mb-1">Height: {{ $animal->formattedHeight() }}</p>
-
+        <p class="mb-1">Treatments: {{ $animal->treatments->implode("name", ", ") }}</p>
+        
       </a>
