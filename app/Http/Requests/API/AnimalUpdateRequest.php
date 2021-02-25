@@ -30,6 +30,8 @@ class AnimalUpdateRequest extends FormRequest
             "weight" => ["nullable", "numeric"],
             "height" => ["nullable", "numeric"],
             "biteyness" => ["nullable", "numeric", "max:5"],
+            "treatments" => ["nullable", "array"], // check treatments is an array
+            "treatments.*" => ["nullable", "string", "max:30"], // check members of treatments are strings
           ];
     }
 }

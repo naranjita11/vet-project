@@ -24,6 +24,7 @@ class AnimalResource extends JsonResource
           "biteyness" => $this->biteyness,
           "dangerous?" => $this->dangerous(),
           "owner_name" => $this->owner->fullName(),
+          "treatments" => $this->treatments->pluck("name")
         ];
     }
 }

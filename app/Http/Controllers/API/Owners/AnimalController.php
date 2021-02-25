@@ -9,6 +9,7 @@ use App\Http\Requests\API\AnimalUpdateRequest;
 use App\Models\Owner;
 use App\Models\Animal;
 use App\Http\Resources\API\AnimalResource;
+use Illuminate\Support\Arr;
 
 class AnimalController extends Controller
 {
@@ -34,7 +35,7 @@ class AnimalController extends Controller
      */
 
 
-            // get the $owner using Route Model Binding
+    // get the $owner using Route Model Binding
     public function store(AnimalRequest $request, Owner $owner)
     {
     $data = $request->all();
@@ -47,6 +48,9 @@ class AnimalController extends Controller
 
     // save the animal in the DB
     $animal->save();
+
+    // use the new method
+    $animal->setTreatments($request->get("treatments"));
 
     // return the new $animal
     return new AnimalResource($animal);
@@ -77,13 +81,17 @@ class AnimalController extends Controller
         $data = $request->all();
       
         // update the model with new data
-        $animal->fill($data);
-      
         // don't need to associate with owner as shouldn't have changed
         // but $owner required for route model binding
         // save the animal
-        $animal->save();
-      
+        $animal->fill($data)->save();
+
+        // use the new method if array is not empty
+        if ($request->get("treatments") != [])
+        {
+            $animal->setTreatments($request->get("treatments"));
+        }
+        
         // return the updated animal
         return new AnimalResource($animal);
     }

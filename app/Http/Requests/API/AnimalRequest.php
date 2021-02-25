@@ -30,6 +30,8 @@ class AnimalRequest extends FormRequest
             "weight" => ["required", "numeric"],
             "height" => ["required", "numeric"],
             "biteyness" => ["required", "numeric", "max:5"],
+            "treatments" => ["required", "array"], // check treatments is an array
+            "treatments.*" => ["string", "max:30"], // check members of treatments are strings
           ];
     }
 }
